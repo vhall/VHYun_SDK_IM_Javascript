@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>jssdk聊天包测试页</title>
+  <base href=".">
+  <link rel="stylesheet" href="./css/base.css">
+  <link href="./css/main.css" rel="stylesheet">
+  <link href="./css/nav.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <script src="./js/clipboard.js"></script>
+  <script src="./js/toc.js"></script>
+  <script src="./js/test.js"></script>
+  <script>
+    window.onload = function () {
+
+      var msgBox = $('#ipt-msg');
+      $('#btn-send').on('click', function () {
+        if (window.chat) {
+          window.chat.emit($(msgBox).val());
+          $(msgBox).val('');
+        }
+      });
+
+    }
+  </script>
+</head>
+
+<body class="open-wrapper ">
+  <div class="page-wrapper">
+    <div class="wrapper">
+      <div class="container">
+        <div class="main-wrapper">
+          <div class="sidebar-wrapper">
+            <div class="sidebar" style="height: 694px;">
+              <!-- <h3 class="sidebar-title" id="active-menu">jssdk推流包接口</h3> -->
+              <ul class="menu-group" id="normal-catalog">
+                <li class="menu-item menu-item-1">
+                  <a href="javascript:void(0);" title="实例化" class="active" data-label="VhallChat">实例化</a>
+                </li>
+                <li class="menu-item menu-item-1">
+                  <a href="javascript:void(0);" title="监听消息" data-label="chat.on">监听消息</a>
+                </li>
+                <li class="menu-item menu-item-1">
+                  <a href="javascript:void(0);" title="发送消息" data-label="chat.emit">发送消息</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="main-container">
+
+            <div id="chat-box" style="width: auto;height: auto;padding-top: 20px;">
+            </div>
+
+            <div class="markdown" style="display:block;" data-label="VhallChat">
+              <h1 id="title">
+                实例化
+                <span class="metadata">更新时间：2017-12-25</span>
+              </h1>
+              <p>
+                <textarea data-label="VhallChat" class="form-control">
+                  VhallChat.createInstance({appId:'d317f559',third_party_user_id:'10000127',token:"access:d317f559:75107dced08acdb1",channelId:"ch_1a348b67",context:"自定义"},msg=>{
+                    window.chat = msg;
+                  },err=>{console.error(err)});
+                </textarea>
+              </p>
+              <br>
+              <p><button data-label="VhallChat" class="btn btn-primary">执行</button></p>
+              <br>
+              <p>
+                <pre data-label="VhallChat"></pre>
+              </p>
+            </div>
+
+            <div class="markdown" style="display: none;" data-label="chat.on">
+              <h1 id="title">
+                window.chat.on 监听聊天消息
+                <span class="metadata">更新时间：2019-07-10</span>
+              </h1>
+              <p><textarea data-label="chat.on" class="form-control">
+                        window.chat.on(function(msg){
+                          let data=JSON.parse(msg.data);
+                          if(data.type === "text"){
+                            var _p = document.createElement('p'),
+                                _nickeName = msg.nick_name || msg.third_party_user_id,
+                                _pic = msg.avatar || './images/pic.jpg';
+                            _p.innerHTML = ' <img style="display: inline-block;" width="30" height="30" src="'+ _pic +'"> '+ msg.sender_id +':   ' + data.text_content;
+                            $('#pre-msg-box').append(_p);
+                          }
+                        })
+              </textarea>
+              </p>
+              <br>
+              <p><button data-label="chat.on" class="btn btn-primary">执行</button></p>
+              <br>
+              <pre data-label="chat.on"></pre>
+            </div>
+
+            <div class="markdown" style="display: none;" data-label="chat.emit">
+              <h1 id="title">
+                chat.emit 发送聊天消息
+                <span class="metadata">更新时间：2019-07-10</span>
+              </h1>
+              <p>
+                <pre id="pre-msg-box" style="height: 400px;width: 280px;"></pre>
+              </p>
+              <p>
+                <input id="ipt-msg" style="width: 280px !important;" type="text" data-label="chat.emit"
+                  class="form-control" value="圣诞快乐🎄🎅" />
+              </p>
+              <br>
+              <p>
+                <button id='btn-send' data-label="chat.emit" class="btn btn-primary">发送</button>
+                <button id='btn-goto-phone' data-label="chat.emit" class="btn btn-primary">去手机版</button>
+              </p>
+            </div>
+
+            <div class="body-action-fixed">
+              <div id="scroll-top" class=""></div>
+            </div>
+            <div class="page-footer-nav"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./js/vendor.js"></script>
+<script type="text/javascript" src="vhall-jssdk-chat-2.1.0.js"></script></body>
+
+</html>
