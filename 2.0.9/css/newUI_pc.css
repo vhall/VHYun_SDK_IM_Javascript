@@ -1,0 +1,405 @@
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+.login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #f0f2f5;
+}
+
+.login .box {
+  width: 400px;
+  background: #fff;
+  box-shadow: 1px 1px 1px #fff;
+  padding: 10px;
+}
+
+.login .box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 321px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 321px;
+  height: 600px;
+  background: rgba(249, 249, 251, 1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.container .tabbar {
+  display: flex;
+  height: 40px;
+  background: #ffffff;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+}
+
+.container .tabbar .tabbar-item {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+}
+
+.container .tabbar .tabbar-item.active::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: rgba(0, 122, 255, 1);
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%)
+}
+
+.container .tabbar .tabbar-item p {
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+}
+
+.container .chatList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  flex-shrink:0
+}
+
+.container .onlineList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+
+.container .chatList::-webkit-scrollbar, .container .onlineList::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+
+.container .chatList::-webkit-scrollbar-track, .container .onlineList::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/*定义滑块 内阴影+圆角*/
+
+.container .chatList::-webkit-scrollbar-thumb, .container .onlineList::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 80px;
+  background: rgba(102, 102, 102, 1);
+  border-radius: 3px;
+  opacity: 0.8;
+}
+
+.container .chatList .chat-item {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 15px;
+  min-height: 60px;
+  flex-shrink:inherit;
+  box-sizing: border-box;
+}
+
+.container .chatList .chat-item img {
+  min-width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.container .chatList .chat-item .chat-item-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container .chatList .chat-item .chat-item-title .chat-item-name {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  max-width: 4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.container .chatList .chat-item .chat-item-title .chat-item-date {
+  font-size: 12px;
+  color: rgba(102, 102, 102, 1);
+}
+
+.container .chatList .chat-item .chat-item-text {
+  font-size: 14px;
+  color: rgba(102, 102, 102, 1);
+  line-height: 20px;
+  word-break:break-all;
+}
+
+.container .onlineList {
+  padding: 10px 0;
+}
+
+.container .onlineList .onlineBox, .container .onlineList .disabledBox .disabled-list {
+  padding: 0 15px;
+}
+
+.container .onlineList .onlineBox {
+  margin-bottom: 20px;
+}
+
+.container .onlineList .online-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .onlineList .online-item .avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container .onlineList .online-item .avatar img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.container .onlineList .online-item .avatar p {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.container .onlineList .online-item button {
+  min-width: 78px;
+}
+
+.container .onlineList .disabledBox .title {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.container .onlineList .disabledBox .title .line {
+  width: 100%;
+  height: 2px;
+  background: #DDDDDD;
+  display: block;
+}
+
+.container .onlineList .disabledBox .title p {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #F9F9FB;
+  padding: 0 12px;
+}
+
+.container .onlineList .disabled-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+  
+.container .onlineList .disabled-item .avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container .onlineList .disabled-item .avatar img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.container .onlineList .disabled-item .avatar p {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.container .onlineList .disabled-item button {
+  width: 78px;
+  height: 30px;
+  background: rgba(153, 153, 153, 1);
+  border-radius: 4px;
+  color: #fff;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.container .buttonBox {
+  /* height: 80px; */
+  background: #ffffff;
+  padding: 10px 0;
+}
+.container .buttonBox .channelId-text{
+  padding: 0 15px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.container .buttonBox .action-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 15px;
+  margin-bottom: 10px;
+}
+
+.container .buttonBox .disabled {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container .buttonBox .disabled span {
+  font-size: 12px;
+  color: rgba(102, 102, 102, 1);
+}
+
+.container .buttonBox .disabled .layui-form-switch {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.container .buttonBox .disabled .layui-form-onswitch {
+  border-color: #007AFF;
+  background-color: #007AFF;
+}
+
+.container .buttonBox .input-box {
+  padding: 0 15px;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+}
+
+.container .buttonBox .input-box input {
+  height: 32px;
+  line-height: 32px;
+  border: 0;
+  flex: 1;
+  color: #666666;
+  font-size: 14px;
+}
+
+.container .buttonBox .input-box input:disabled {
+  background: #fff;
+}
+
+.container .buttonBox .input-box #sendMsg {
+  width: 50px;
+  height: 32px;
+  background: rgba(0, 122, 255, 1);
+  border-radius: 0px 4px 4px 0px;
+  outline: none;
+  border: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  text-align: center;
+  line-height: 32px;
+}
+
+.container .buttonBox .input-box #sendMsg.disabledBtn {
+  pointer-events: none;
+}
+
+.switchBtn {
+  height: 12px;
+  margin-left: 10px;
+}
+
+.switchBtn input {
+  display: none;
+}
+
+.switchBtn .button-label {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  border-radius: 30px;
+  overflow: hidden;
+  height: 12px;
+  background: #444444;
+  cursor: pointer;
+}
+
+.switchBtn .circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.switchBtn .on {
+  color: #fff;
+  display: none;
+  text-indent: 10px;
+}
+
+.switchBtn .off {
+  color: #fff;
+  display: inline-block;
+  text-indent: 25px;
+}
+
+.switchBtn .button-label .circle {
+  left: 0;
+  transition: all 0.1s;
+}
+
+.switchBtn>input:checked+label.button-label .circle {
+  left: 13px;
+}
+
+.switchBtn>input:checked+label.button-label {
+  background-color: #007AFF;
+}
